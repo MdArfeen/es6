@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <button id="productBtn">Product Page</button>
+    <form>
+        <input placeholder="product's title">
+        <input placeholder="product's image url">
+        <input placeholder="product's price">
+        <input type="submit">
+    </form>
+</body>
+<script>
+    let productBtn=document.querySelector("#productBtn")
+let form=document.querySelector("form")
+
+let handleFormSubmit=(event)=>{
+    event.preventDefault()
+
+    let formValues=event.target
+    let title=formValues[0].value
+    let img=formValues[1].value
+    let price=formValues[2].value
+
+    let obj={
+        id:Math.random().toString(),
+        title,
+        img,
+        price
+    }
+    fetch("http://localhost:3000/prducts",{
+        method:"POST",
+        headers:{
+            "Content-Type":"application/json"
+        },
+        body:JSON.stringify(obj)
+    })
+    alert("production has been added")
+}
+
+form.addEventListener("submit",(event)=>{
+    handleFormSubmit(event)
+})
+
+productBtn.addEventListener("click",()=>{
+    window.location.href="product.html"
+})
+</script>
+</html>

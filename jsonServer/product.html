@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    #container{
+        display: grid;
+        grid-template-columns: repeat(3,1fr);
+        width: 70%;
+        margin: auto;
+        gap: 30px;
+    }
+</style>
+<body>
+    <div id="container">
+
+    </div>
+    <button id="adminBtn">
+        ADMIN PAGE
+    </button>
+      <div id="paginate">
+        <button id="paginate-prev">PREV</button>
+        <button id="paginate-next">NEXT</button>
+      </div>
+</body>
+<script>
+    let adminBtn=document.querySelector("#adminBtn")
+    let container=document.querySelector("#container")
+   
+    let prevBtn=document.querySelector("#paginate-prev")
+    let nextBtn=document.querySelector("#paginate-next")
+
+    let pageNo=1
+    let limit=3
+
+    let getData=async (URL)=>{
+        let res=await fetch(URL)
+        let data=await res.json()
+        console.log(data)
+        showData(data)
+    }
+
+    let showData=(arr)=>{
+        container.innerHTML=""
+        arr.forEach((ele,i)=>{
+       let div=document.createElement("p")
+
+       let title=document.createElement("p")
+       title.innerText=ele.title
+    
+       let img=document.createElement("img") 
+       img.src=ele.img 
+
+       let price=document.createElement("p")
+             price.innerText=ele.price
+       let deleteBtn=document.createElement("button")
+       deleteBtn.innerHTML="Delete"
+       deleteBtn.addEventListener("click",()=>{
+        handleDelete(ele.id)
+       })
+
+         let updateBtn=document.createElement("button")    
+         updateBtn.innerHTML="Edit"  
+         updateBtn.addEventListener("click",()=>{
+            handleEdit(ele,div)
+         })
+
+           div.append(img,title,price,deleteBtn,updateBtn)
+           container.append(div)
+        })
+    }
+
+   let handleDelete=(id)=>{
+      fetch(`http://localhost:3000/prducts/${id}`,{
+        method:"DELETE",
+        headers:{
+            "Content-Type":"application/json"
+        }
+      })
+   }
+
+   let handleEdit=(ele,box)=>{
+   
+  let div=document.createElement("div")
+  let title=document.createElement("input")
+  title.placeholder="title here"
+  title.value=ele.title
+
+  let img=document.createElement("input")
+  img.placeholder="img here"
+  img.value=ele.img
+
+  let price=document.createElement("input")
+  price.placeholder="price here"
+  price.value=ele.price
+
+  let save=document.createElement("button")
+  save.innerHTML="Update"
+  save.addEventListener("click", ()=>{
+   ele.title=title.value
+   ele.img=img.value
+   ele.price=price.value
+   
+   fetch(`http://localhost:3000/prducts/${ele.id}`,{
+        method:"PATCH",
+        headers:{
+            "Content-Type":"application/json"
+        },
+        body:JSON.stringify(ele)
+      })
+      .then(()=>{
+         getData("http://localhost:3000/prducts")
+      })
+  })
+
+  div.append(title,img,price,save)
+  box.append(div)
+
+   }
+
+
+adminBtn.addEventListener("click",()=>{
+    window.location.href="admin.html"
+})   
+ 
+prevBtn.addEventListener("click",()=>{
+    pageNo=pageNo-1
+    if(pageNo>0){
+        getData(`http://localhost:3000/prducts/?_page=${pageNo}&_limit=3`)
+    }else{
+        pageNo=1
+    }
+    
+})
+
+nextBtn.addEventListener("click",()=>{
+    pageNo=pageNo+1
+    getData(`http://localhost:3000/prducts/?_page=${pageNo}&_limit=3`)
+})
+
+getData(getData(`http://localhost:3000/prducts/?_page=${pageNo}&_limit=3`))
+</script>
+</html>

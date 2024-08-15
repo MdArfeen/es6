@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+<script>
+    let player={
+        name:"virat",
+        id:1,
+        locationplayed:["delhi","mumbai"],
+        address:{
+            state:"delhi",
+            city:"New-Delhi",
+
+        }
+
+    }
+    let {name,id,locationplayed,address}=player
+
+    const Addressprinter=({name,id,locationplayed})=>{
+        console.log(name,id,locationplayed)
+    }
+    Addressprinter(player)
+</script>
+</html>

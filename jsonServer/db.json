@@ -1,0 +1,40 @@
+{
+  "prducts": [
+    {
+      "id": "0.6527915137334828",
+      "title": "mobile premium quality",
+      "img": "https://m.media-amazon.com/images/I/71nvkHnPpZL._AC_SR180,120_QL70_.jpg",
+      "price": "78000"
+    },
+    {
+      "id": "0.9175746333077063",
+      "title": "Oppo mobile",
+      "img": "https://m.media-amazon.com/images/I/71nvkHnPpZL._AC_SR180,120_QL70_.jpg",
+      "price": "28000"
+    },
+    {
+      "id": "0.5037045164142318",
+      "title": "Motorola edge 50",
+      "img": "https://rukminim2.flixcart.com/image/312/312/xif0q/mobile/o/c/6/edge-50-pb2w0000in-motorola-original-imah3anbj72hbtfz.jpeg?q=70",
+      "price": "90000"
+    },
+    {
+      "id": "0.933176979235665",
+      "title": "POCO M6",
+      "img": "https://rukminim2.flixcart.com/image/312/312/xif0q/mobile/d/h/q/m6-pro-5g-mzb0eprin-poco-original-imags3e7vewsafst.jpeg?q=70",
+      "price": "32000"
+    },
+    {
+      "id": "0.484533462403574",
+      "title": "Realme pro",
+      "img": "https://rukminim2.flixcart.com/image/312/312/xif0q/mobile/m/r/p/-original-imahyzygqydqtyvj.jpeg?q=70",
+      "price": "90000"
+    },
+    {
+      "id": "0.02582040135831476",
+      "title": "Infinix gt20",
+      "img": "https://rukminim2.flixcart.com/image/312/312/xif0q/mobile/1/n/a/-original-imahf38d9qynp6ef.jpeg?q=70",
+      "price": "8700"
+    }
+  ]
+}
